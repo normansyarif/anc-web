@@ -33,12 +33,3 @@ Route::post('/admin/update_faq', 'FAQController@update')->name('update_faq');
 Route::post('/admin/delete_faq/{id}', 'FAQController@delete')->name('delete_faq');
 
 Route::get('/admin/users', 'HomeController@users')->name('users');
-
-//-----------------
-// return respon json
-//-----------------
-Route::get('/api/faqs', 'FAQController@jsonFaq')->name('json_faq');
-Route::get('/api/faq/{id}', 'FAQController@jsonFaqItem')->name('json_faq_item');
-
-Route::get('/api/forums', 'ForumController@jsonForum')->name('json_forum');
-Route::get('/api/forum/{id}', 'ForumController@jsonForumResponses')->name('json_forum_responses');

@@ -34,9 +34,9 @@ class SerbaController extends Controller
             if(in_array($extension, ["jpg", "png", "jpeg"])) {
                 $filenametostore = $filename.'_'.time().'.'.$extension;
                 $request->file('upload')->move(public_path('images'), $filenametostore);
-                
-                $url = asset('images/'.$filenametostore); 
-                $msg = 'Image successfully uploaded'; 
+
+                $url = asset('images/'.$filenametostore);
+                $msg = 'Image successfully uploaded';
                 $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             }
         }
@@ -70,4 +70,18 @@ class SerbaController extends Controller
     	$s->delete();
     	return redirect(route('serba'))->with('success', 'Berhasil menghapus entri');
     }
+
+    // JSON
+    public function jsonSerba() {
+        $item = array();
+        $entries = SerbaSerbi::orderBy('created_at', 'desc')->get();
+        foreach($entries as $e) {
+            $store = array();
+            $store['id'] = $e->id;
+            $store['title'] = $e->judul;
+            array_push($item, $store);
+        }
+        return $item;
+    }
+
 }
