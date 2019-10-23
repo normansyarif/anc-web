@@ -20,7 +20,16 @@ use Illuminate\Http\Request;
 Route::get('/faqs', 'FAQController@jsonFaq')->name('json_faq');
 Route::get('/faq/{id}', 'FAQController@jsonFaqItem')->name('json_faq_item');
 
-Route::get('/forums', 'ForumController@jsonForum')->name('json_forum');
+Route::post('/newForum',  'APIForumController@newForum');
+Route::get('/forums',     'ForumController@jsonForum')->name('json_forum');
 Route::get('/forum/{id}', 'ForumController@jsonForumResponses')->name('json_forum_responses');
+Route::get('/imgForum/{id}/{index}', 'APIForumController@imgFoto');
 
 Route::get('/serba', 'SerbaController@jsonSerba')->name('json_serba');
+
+// ----- user
+
+Route::post('/register', 'APIUserController@register');
+Route::post('/login', 'APIUserController@login');
+Route::post('/editProfile', 'APIUserController@profile');
+Route::get('/imgProfile/{token}', 'APIUserController@imgProfile');

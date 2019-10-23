@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Forum;
+use App\User;
+use App\Tool;
 use App\ForumResponse;
 
 class ForumController extends Controller
@@ -41,16 +43,25 @@ class ForumController extends Controller
     }
 
     public function jsonForumResponses($id) {
+        $forum = Forum::find($id);
+        $user  = User::find($forum->user_id);
+
         $item = array();
         $res = ForumResponse::where('forum_id', $id)->get();
         foreach($res as $r) {
             $store = array();
+            $store['token']  = Tool::encrypt($r->user->id);
             $store['user_name'] = $r->user->name;
             $store['avatar'] = $r->user->photo;
             $store['response'] = $r->respon;
             $store['created_at'] = date("d-m-Y", strtotime($r->created_at));
             array_push($item, $store);
         }
-        return $item;
+
+        $forum->user_name = $user->name;
+        $forum->token = Tool::encrypt($id);
+        $forum->responses = $item;
+        $forum->response_count = count($forum->responses);
+        return $forum;
     }
 }
