@@ -32,6 +32,7 @@ class ForumController extends Controller
         foreach($forum as $f) {
             $store = array();
             $store['id'] = $f->id;
+            $store['token'] = Tool::encrypt($f->user_id);
             $store['user_name'] = $f->user->name;
             $store['avatar'] = $f->user->photo;
             $store['title'] = $f->judul;
@@ -47,7 +48,7 @@ class ForumController extends Controller
         $user  = User::find($forum->user_id);
 
         $item = array();
-        $res = ForumResponse::where('forum_id', $id)->get();
+        $res = ForumResponse::where('forum_id', $id)->orderBy("id", "DESC")->get();
         foreach($res as $r) {
             $store = array();
             $store['token']  = Tool::encrypt($r->user->id);
@@ -59,7 +60,7 @@ class ForumController extends Controller
         }
 
         $forum->user_name = $user->name;
-        $forum->token = Tool::encrypt($id);
+        $forum->token = Tool::encrypt($forum->user_id);
         $forum->responses = $item;
         $forum->response_count = count($forum->responses);
         return $forum;

@@ -35,4 +35,15 @@ class APIForumController extends Controller
   public function imgFoto($id, $index){
     return redirect("/forum/".$id."_".$index.".png");
   }
+
+  public function newResponse(Request $request){
+      $response = new ForumResponse();
+      $response->user_id  = Tool::decrypt($request->token);
+      $response->forum_id = $request->forum_id;
+      $response->respon = $request->respon;
+
+      if($response->save()){
+        return Tool::json(array('status' => '1'));
+      } else return Tool::json(array('status' => '0'));
+  }
 }
