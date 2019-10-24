@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2019 at 09:45 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.4
+-- Generation Time: Oct 24, 2019 at 08:53 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,8 +56,8 @@ CREATE TABLE `forum` (
   `user_id` int(11) NOT NULL,
   `judul` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `konten` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` mediumtext COLLATE utf8mb4_unicode_ci,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `foto` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -68,7 +68,9 @@ CREATE TABLE `forum` (
 INSERT INTO `forum` (`id`, `user_id`, `judul`, `konten`, `foto`, `created_at`, `updated_at`) VALUES
 (1, 2, 'Tes forum', 'konten forum', NULL, '2019-10-01 17:00:00', NULL),
 (2, 2, 'Tes lagi', 'konten lagi', NULL, '2019-10-19 17:00:00', NULL),
-(3, 2, 'tes ketiga', 'konten ketiga', NULL, '2019-10-19 17:00:00', NULL);
+(3, 2, 'tes ketiga', 'konten ketiga', NULL, '2019-10-19 17:00:00', NULL),
+(4, 10, 'sayang', 'syaang kamu', NULL, '2019-10-23 13:07:27', '2019-10-23 13:07:27'),
+(5, 10, 'ada nih', 'woy', NULL, '2019-10-23 13:47:58', '2019-10-23 13:47:58');
 
 -- --------------------------------------------------------
 
@@ -118,7 +120,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2019_10_20_090548_create_forum_table', 4),
 (8, '2019_10_20_090602_create_faq_table', 4),
 (9, '2019_10_20_090939_create_forum_responses_table', 4),
-(10, '2019_10_20_113045_add_photo_to_users', 5);
+(10, '2019_10_20_113045_add_photo_to_users', 5),
+(11, '2019_10_21_161541_add_tanggal_lahir_to_user', 6);
 
 -- --------------------------------------------------------
 
@@ -167,16 +170,19 @@ CREATE TABLE `users` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipe` enum('1','2','3','4') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `awal_hamil` date DEFAULT NULL,
-  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `tipe`, `awal_hamil`, `photo`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '4', NULL, NULL),
-(2, 'Yulia', 'yulia', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '1', '2019-10-20', NULL);
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `tipe`, `awal_hamil`, `photo`, `tanggal_lahir`) VALUES
+(1, 'Administrator', 'admin', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '4', NULL, NULL, NULL),
+(2, 'Yulia', 'yulia', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '1', '2019-10-20', NULL, NULL),
+(7, 'joni', 'joni', '$2y$10$SjchB61xJsg5B6NOOcW//uCHa9O4.3Hgit5Zxuzz3B0L8WiBbeatK', '2', NULL, NULL, NULL),
+(10, 'Masku', 'hei', '$2y$10$K3QKI/jbfPK9DyRyh6SVJeLv3e5pHG.Usoyp93hxJDaoRy94D9gZG', '1', '2019-09-18', NULL, '2019-10-01');
 
 --
 -- Indexes for dumped tables
@@ -239,7 +245,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `forum_responses`
@@ -251,7 +257,7 @@ ALTER TABLE `forum_responses`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `serba_serbi`
@@ -263,7 +269,7 @@ ALTER TABLE `serba_serbi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
