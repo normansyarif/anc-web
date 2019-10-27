@@ -32,11 +32,16 @@ Route::get('/serba', 'SerbaController@jsonSerba')->name('json_serba');
 
 Route::post('/register', 'APIUserController@register');
 Route::post('/login', 'APIUserController@login');
+Route::post('/loginDokter', 'APIUserController@loginDokter');
 Route::post('/editProfile', 'APIUserController@profile');
 Route::get('/imgProfile/{token}', 'APIUserController@imgProfile');
 
 // ----- Chat
 
+Route::get('/chatList', 'ChatController@chatList');
 Route::get('/chats/{token}', 'ChatController@chats');
+Route::post('/chatsDokter', 'ChatController@chatsDokter');
 Route::post('/newChat', 'ChatController@newChat');
+Route::post('/newChatDokter', 'ChatController@newChatDokter');
+Route::post('/readDokter', 'ChatController@readDokter');
 Route::get('/imgChat/{id}', 'ChatController@imgFoto');

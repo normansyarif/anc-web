@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2019 at 10:32 AM
+-- Generation Time: Oct 27, 2019 at 04:57 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -34,20 +34,24 @@ CREATE TABLE `chats` (
   `recipient_id` int(11) NOT NULL,
   `chat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_read` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `chats`
 --
 
-INSERT INTO `chats` (`id`, `sender_id`, `recipient_id`, `chat`, `created_at`, `updated_at`) VALUES
-(15, 10, 1, 'hai sayang', '2019-10-25 07:54:08', '2019-10-25 07:54:08'),
-(16, 10, 1, 'pap dong', '2019-10-25 07:54:12', '2019-10-25 07:54:12'),
-(17, 10, 1, 'oke', '2019-10-25 07:55:03', '2019-10-25 07:55:03'),
-(18, 10, 1, 'aman', '2019-10-25 08:00:33', '2019-10-25 08:00:33'),
-(19, 10, 1, 'ini mas gambarnya', '2019-10-25 08:02:03', '2019-10-25 08:02:03'),
-(20, 10, 1, 'nambah lagi', '2019-10-25 08:03:56', '2019-10-25 08:03:56');
+INSERT INTO `chats` (`id`, `sender_id`, `recipient_id`, `chat`, `created_at`, `updated_at`, `is_read`) VALUES
+(79, 3, 1, 'hai', '2019-10-27 15:08:05', '2019-10-27 15:50:13', 1),
+(80, 1, 3, 'hi', '2019-10-27 15:23:18', '2019-10-27 15:23:18', 0),
+(81, 10, 1, 'dede', '2019-10-27 17:00:00', '2019-10-27 15:51:37', 1),
+(82, 1, 10, 'apa kamu', '2019-10-27 15:48:18', '2019-10-27 15:48:18', 0),
+(83, 1, 10, 'jahat', '2019-10-27 15:48:23', '2019-10-27 15:48:23', 0),
+(84, 1, 3, 'yeyey', '2019-10-27 15:49:56', '2019-10-27 15:49:56', 0),
+(85, 10, 1, 'heh!', '2019-10-27 15:54:24', '2019-10-27 15:54:24', 0),
+(86, 10, 1, 'vw', '2019-10-27 15:54:45', '2019-10-27 15:54:45', 0),
+(87, 10, 1, 'coba', '2019-10-27 15:56:34', '2019-10-27 15:56:34', 0);
 
 -- --------------------------------------------------------
 
@@ -93,9 +97,9 @@ CREATE TABLE `forum` (
 --
 
 INSERT INTO `forum` (`id`, `user_id`, `judul`, `konten`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Tes forum', 'konten forum', NULL, '2019-10-01 17:00:00', NULL),
-(2, 2, 'Tes lagi', 'konten lagi', NULL, '2019-10-19 17:00:00', NULL),
-(3, 2, 'tes ketiga', 'konten ketiga', NULL, '2019-10-19 17:00:00', NULL),
+(1, 3, 'Tes forum', 'konten forum', NULL, '2019-10-01 17:00:00', NULL),
+(2, 3, 'Tes lagi', 'konten lagi', NULL, '2019-10-19 17:00:00', NULL),
+(3, 3, 'tes ketiga', 'konten ketiga', NULL, '2019-10-19 17:00:00', NULL),
 (4, 10, 'sayang', 'syaang kamu', NULL, '2019-10-23 13:07:27', '2019-10-23 13:07:27'),
 (5, 10, 'ada nih', 'woy', NULL, '2019-10-23 13:47:58', '2019-10-23 13:47:58'),
 (6, 10, 'hei kamu', 'dimana kamu', NULL, '2019-10-24 13:53:56', '2019-10-24 13:53:56'),
@@ -131,7 +135,11 @@ INSERT INTO `forum_responses` (`id`, `forum_id`, `user_id`, `respon`, `created_a
 (6, 8, 10, 'kamu jangan berisik ya, soalnya aku lagi baper :(', '2019-10-24 14:16:35', '2019-10-24 14:16:35'),
 (7, 8, 10, 'ji', '2019-10-25 08:11:30', '2019-10-25 08:11:30'),
 (8, 8, 10, 'kdkdm', '2019-10-25 08:11:41', '2019-10-25 08:11:41'),
-(9, 6, 10, 'hi', '2019-10-25 08:11:55', '2019-10-25 08:11:55');
+(9, 6, 10, 'hi', '2019-10-25 08:11:55', '2019-10-25 08:11:55'),
+(10, 8, 10, 'jj', '2019-10-27 13:10:33', '2019-10-27 13:10:33'),
+(11, 8, 10, 'jjjnmnjjhhh', '2019-10-27 13:10:42', '2019-10-27 13:10:42'),
+(12, 9, 10, 'bacod kau', '2019-10-27 13:30:10', '2019-10-27 13:30:10'),
+(13, 9, 10, 'cepat kan', '2019-10-27 13:30:16', '2019-10-27 13:30:16');
 
 -- --------------------------------------------------------
 
@@ -161,7 +169,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2019_10_20_090939_create_forum_responses_table', 4),
 (10, '2019_10_20_113045_add_photo_to_users', 5),
 (11, '2019_10_21_161541_add_tanggal_lahir_to_user', 6),
-(12, '2019_10_24_215226_create_chats_table', 7);
+(12, '2019_10_24_215226_create_chats_table', 7),
+(13, '2019_10_27_205455_add_read_to_chats', 8);
 
 -- --------------------------------------------------------
 
@@ -219,10 +228,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `tipe`, `awal_hamil`, `photo`, `tanggal_lahir`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '4', NULL, NULL, NULL),
-(2, 'Yulia', 'yulia', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '1', '2019-10-20', NULL, NULL),
+(1, 'Dr. dr. Herlambang, Sp.OG-KFM', 'herlambang', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '3', NULL, NULL, '2019-10-01'),
+(2, 'Administrator', 'admin', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '4', NULL, NULL, NULL),
+(3, 'Yulia', 'yulia', '$2y$12$JcIj4734d591q1owUeoNS.yRXibXgIh1bSCRtN7iIji1jP81EftIe', '1', '2019-10-20', NULL, NULL),
 (7, 'joni', 'joni', '$2y$10$SjchB61xJsg5B6NOOcW//uCHa9O4.3Hgit5Zxuzz3B0L8WiBbeatK', '2', NULL, NULL, NULL),
-(10, 'Masku', 'hei', '$2y$10$K3QKI/jbfPK9DyRyh6SVJeLv3e5pHG.Usoyp93hxJDaoRy94D9gZG', '1', '2019-09-20', NULL, '2019-10-01');
+(10, 'Masku', 'hei', '$2y$10$K3QKI/jbfPK9DyRyh6SVJeLv3e5pHG.Usoyp93hxJDaoRy94D9gZG', '1', '2019-09-22', NULL, '2019-10-01');
 
 --
 -- Indexes for dumped tables
@@ -285,7 +295,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -303,13 +313,13 @@ ALTER TABLE `forum`
 -- AUTO_INCREMENT for table `forum_responses`
 --
 ALTER TABLE `forum_responses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `serba_serbi`
@@ -321,7 +331,7 @@ ALTER TABLE `serba_serbi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

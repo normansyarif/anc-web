@@ -26,7 +26,18 @@ class APIUserController extends Controller
     }
 
     public function login(Request $request){
-      $user = User::where('username', $request->username)->first();
+      $user = User::where('username', $request->username)->where('tipe', '!=', '3')->first();
+      if(!empty($user)){
+        if(Hash::check($request->password, $user->password)){
+          return Tool::json(array('token' => Tool::encrypt($user->id), 'user' => $user));
+        }
+      }
+
+      return Tool::json(array('token' => '0'));
+    }
+
+    public function loginDokter(Request $request){
+      $user = User::where('username', $request->username)->where('tipe', '3')->first();
       if(!empty($user)){
         if(Hash::check($request->password, $user->password)){
           return Tool::json(array('token' => Tool::encrypt($user->id), 'user' => $user));
@@ -40,7 +51,7 @@ class APIUserController extends Controller
       $id   = Tool::decrypt($request->token);
       $user = User::find($id);
       $user->name = $request->name;
-      $user->awal_hamil = $request->awal_hamil;
+      $user->awal_hamil = ($request->awal_hamil == "0") ? NULL : $request->awal_hamil;
       $user->tanggal_lahir = $request->tanggal_lahir;
 
       if($user->save()){
