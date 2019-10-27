@@ -34,3 +34,9 @@ Route::post('/register', 'APIUserController@register');
 Route::post('/login', 'APIUserController@login');
 Route::post('/editProfile', 'APIUserController@profile');
 Route::get('/imgProfile/{token}', 'APIUserController@imgProfile');
+
+// ----- Chat
+
+Route::get('/chats/{token}', 'ChatController@chats');
+Route::post('/newChat', 'ChatController@newChat');
+Route::get('/imgChat/{id}', 'ChatController@imgFoto');

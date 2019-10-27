@@ -6,6 +6,7 @@ use App\Tool;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class APIUserController extends Controller
 {
@@ -54,6 +55,6 @@ class APIUserController extends Controller
 
     public function imgProfile($token){
       $id = Tool::decrypt($token);
-      return redirect("/profile/".$id.".png");
+      return response()->file(public_path()."/profile/".$id.".png");
     }
 }

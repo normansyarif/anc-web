@@ -33,7 +33,7 @@ class APIForumController extends Controller
   }
 
   public function imgFoto($id, $index){
-    return redirect("/forum/".$id."_".$index.".png");
+    return response()->file(public_path()."/forum/".$id."_".$index.".png");
   }
 
   public function newResponse(Request $request){
