@@ -82,7 +82,7 @@ class ChatController extends Controller
       if($chat->save()){
         $file = $request->img;
         if($file != "") Tool::storeImage($file, public_path('chat/'), $chat->id);
-        return Tool::json(array('status' => '1', 'id' => $chat->id));
+        return Tool::json(array('status' => '1', 'id' => $chat->id, 'sender_id' => $chat->sender_id));
       } else return Tool::json(array('status' => '0'));
     }
 
@@ -95,7 +95,7 @@ class ChatController extends Controller
       if($chat->save()){
         $file = $request->img;
         if($file != "") Tool::storeImage($file, public_path('chat/'), $chat->id);
-        return Tool::json(array('status' => '1', 'id' => $chat->id));
+        return Tool::json(array('status' => '1', 'id' => $chat->id, 'sender_id' => $chat->sender_id));
       } else return Tool::json(array('status' => '0'));
     }
 

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 class APIUserController extends Controller
 {
+    public function getId($token){
+      return Tool::decrypt($token);
+    }
+
     public function register(Request $request){
         $alreadyUser = User::where('username', $request->username)->first();
         if(!empty($alreadyUser)) return Tool::json(array('status' => '2'));

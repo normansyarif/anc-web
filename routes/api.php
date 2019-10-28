@@ -36,6 +36,7 @@ Route::post('/checkLogin', 'APIUserController@checkLogin');
 Route::post('/loginDokter', 'APIUserController@loginDokter');
 Route::post('/editProfile', 'APIUserController@profile');
 Route::get('/imgProfile/{token}', 'APIUserController@imgProfile');
+Route::get('/getId/{token}', 'APIUserController@getId');
 
 // ----- Chat
 
