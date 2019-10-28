@@ -39,8 +39,26 @@ class FAQController extends Controller
     // Respon json
     //--------------------
     public function jsonFaq() {
+        $pageno = $_GET['page'];
+        $no_of_records_per_page = $_GET['per_page'];
+        $offset = ($pageno-1) * $no_of_records_per_page;
+
+        if(isset($_GET['search'])) {
+            $q = $_GET['search'];
+            $faq = FAQ::orderBy('created_at', 'desc')
+                ->where('pertanyaan', 'like', '%' . $q . '%')
+                ->orWhere('jawaban', 'like', '%' . $q . '%')
+                ->skip($offset)
+                ->take($no_of_records_per_page)
+                ->get();
+        }else{
+            $faq = FAQ::orderBy('created_at', 'desc')
+                ->skip($offset)
+                ->take($no_of_records_per_page)
+                ->get();
+        }
+
         $item = array();
-        $faq = FAQ::orderBy('created_at', 'desc')->get();
         foreach($faq as $f) {
             $store = array();
             $store['id'] = $f->id;

@@ -37,3 +37,5 @@ Route::post('/admin/users/{id}/delete', 'UserController@delete')->name('user.del
 
 Route::get('/admin/settings', 'UserController@settings')->name('settings');
 Route::post('/admin/change-pass', 'UserController@changePassword')->name('changePassword');
+
+Route::get('/webview/serba/{id}', 'SerbaController@webview')->name('webview');

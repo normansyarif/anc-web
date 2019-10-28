@@ -27,8 +27,23 @@ class ForumController extends Controller
     }
 
     public function jsonForum(Request $req) {
+        $pageno = $_GET['page'];
+        $no_of_records_per_page = $_GET['per_page'];
+        $offset = ($pageno-1) * $no_of_records_per_page;
+
+        if(isset($_GET['search'])) {
+            $q = $_GET['search'];
+            $forum = Forum::where('judul', 'like', '%' . $q . '%')
+                ->orWhere('konten', 'like', '%' . $q . '%')
+                ->orderBy('created_at', 'desc')
+                ->skip($offset)
+                ->take($no_of_records_per_page)
+                ->get();
+        }else{
+            $forum = Forum::orderBy('created_at', 'desc')->skip($offset)->take($no_of_records_per_page)->get();
+        }
+
         $item = array();
-        $forum = Forum::orderBy('created_at', 'desc')->get();
         foreach($forum as $f) {
             $store = array();
             $store['id'] = $f->id;
@@ -36,6 +51,7 @@ class ForumController extends Controller
             $store['user_name'] = $f->user->name;
             $store['avatar'] = $f->user->photo;
             $store['title'] = $f->judul;
+            $store['content'] = $f->konten;
             $store['created_at'] = date("d-m-Y", strtotime($f->created_at));
             $store['response_count'] = count($f->responses);
             array_push($item, $store);

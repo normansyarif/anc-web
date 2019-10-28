@@ -50,19 +50,15 @@
           <div class="screen">
 
            <div class="card m-2 mb-3">
-            <div class="card-body p-0">
+            <div class="card-body p-0 miku">
               <h5 class="list-group-item active bg-info font-weight-bold">@yield('judul')</h5>
               <div class="container mt-3">
-
                 @yield('konten')
-
               </div>
             </div>
           </div>
 
         </div>
-        <div class="home"></div>
-        <div class="bottom-bar"></div>
       </div>
     </div>
   </div>

@@ -22,6 +22,11 @@ class SerbaController extends Controller
     	return view('serba.preview')->with('s', $s);
     }
 
+    public function webview($id) {
+        $s = SerbaSerbi::find($id);
+        return view('serba.webview')->with('s', $s);
+    }
+
     public function uploadImage(Request $request) {
         $CKEditorFuncNum = $request->input('CKEditorFuncNum');
         $re = $msg = '';
