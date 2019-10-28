@@ -32,6 +32,7 @@ Route::get('/serba', 'SerbaController@jsonSerba')->name('json_serba');
 
 Route::post('/register', 'APIUserController@register');
 Route::post('/login', 'APIUserController@login');
+Route::post('/checkLogin', 'APIUserController@checkLogin');
 Route::post('/loginDokter', 'APIUserController@loginDokter');
 Route::post('/editProfile', 'APIUserController@profile');
 Route::get('/imgProfile/{token}', 'APIUserController@imgProfile');

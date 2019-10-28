@@ -89,3 +89,7 @@
   font-weight: bold;
   font-size: .9em;
 }
+
+.ta-faq {
+  min-height: 200px;
+}

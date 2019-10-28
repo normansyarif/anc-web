@@ -16,6 +16,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>Waktu Posting</th>
               <th>Judul</th>
               <th>Aksi</th>
             </tr>
@@ -24,6 +25,7 @@
             
             @foreach($entries as $e)
             <tr>
+              <td>{{ date("d-m-Y H:i", strtotime($e->created_at)) }}</td>
               <td>{{ $e->judul }}</td>
               <td>
                 <a target="__blank" href="{{ route('preview_serba', $e->id) }}" class="btn btn-info btn-sm" title="Preview"><i class="fa fa-eye"></i></a>
@@ -51,5 +53,18 @@
 @endsection
 
 @section('modals')
+
+@endsection
+
+
+@section('scripts')
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#dataTable').DataTable( {
+      "order": [[ 0, "desc" ]]
+    } );
+  } );
+</script>
 
 @endsection

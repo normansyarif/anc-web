@@ -81,6 +81,17 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item {{ Request::is('admin/settings') ? 'active' : '' }}">
+				<a class="nav-link" href="{{ route('settings') }}">
+					<i class="fas fa-cog"></i>
+					<span>Pengaturan</span>
+				</a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block">
+
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -154,9 +165,6 @@
 	<!-- Page level plugins -->
 	<script src="{{ asset('vendors/sb-admin-2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('vendors/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="{{ asset('vendors/sb-admin-2/js/demo/datatables-demo.js') }}"></script>
 
 	@yield('scripts')
 

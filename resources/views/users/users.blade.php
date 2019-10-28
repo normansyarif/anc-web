@@ -22,13 +22,39 @@
           </thead>
           <tbody>
             
+            @foreach($users as $user)
             <tr>
-              <td>Ujang</td>
+              <td>{{ $user->name }}</td>
+
+              @if($user->tipe == 1)
               <td>Ibu Hamil</td>
+              @elseif($user->tipe == 2)
+              <td>Mahasiswa</td>
+              @elseif($user->tipe == 3)
+              <td>Dokter</td>
+              @elseif($user->tipe == 4)
+              <td>Administrator</td>
+              @else
+              <td>-</td>
+              @endif
+
+              @if($user->tipe == 1 || $user->tipe == 2)
               <td>
-                <button href="#" class="btn btn-danger btn-sm" title="Hapus"><i class="fa fa-trash"></i></button>
+                <button onclick="
+                if(confirm('Yakin?')) {
+                  $(this).find('form').submit();
+                }
+                " class="btn btn-danger btn-sm" title="Hapus">Hapus
+                <form method="post" action="{{ route('user.delete', $user->id) }}">
+                  @csrf
+                </form>
+              </button>
               </td>
+              @else
+              <td></td>
+              @endif
             </tr>
+            @endforeach
             
           </tbody>
         </table>
@@ -40,5 +66,18 @@
 @endsection
 
 @section('modals')
+
+@endsection
+
+
+@section('scripts')
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#dataTable').DataTable( {
+      "order": [[ 0, "asc" ]]
+    } );
+  } );
+</script>
 
 @endsection

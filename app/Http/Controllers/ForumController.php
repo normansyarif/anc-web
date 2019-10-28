@@ -26,7 +26,7 @@ class ForumController extends Controller
     	return redirect(route('forum'))->with('success', 'Berhasil menghapus forum');
     }
 
-    public function jsonForum() {
+    public function jsonForum(Request $req) {
         $item = array();
         $forum = Forum::orderBy('created_at', 'desc')->get();
         foreach($forum as $f) {

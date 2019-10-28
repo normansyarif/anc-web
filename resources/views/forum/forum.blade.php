@@ -15,6 +15,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>Waktu</th>
               <th>Pengguna</th>
               <th>Judul</th>
               <th>Aksi</th>
@@ -24,6 +25,7 @@
 
             @foreach($entries as $e)
             <tr>
+              <td>{{ date("d-m-Y H:i", strtotime($e->created_at)) }}</td>
               <td>{{ $e->user->name }}</td>
               <td>{{ $e->judul }}</td>
               <td>
@@ -38,16 +40,16 @@
                 <form method="post" action="{{ route('delete_forum', $e->id) }}">
                   @csrf
                 </form>
-                </button>
-              </td>
-            </tr>
-            @endforeach
-            
-          </tbody>
-        </table>
-      </div>
+              </button>
+            </td>
+          </tr>
+          @endforeach
+
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
 </div>
 
 @endsection
@@ -75,5 +77,17 @@
     </div>
   </div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#dataTable').DataTable( {
+      "order": [[ 0, "desc" ]]
+    } );
+  } );
+</script>
 
 @endsection

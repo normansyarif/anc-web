@@ -79,6 +79,7 @@ class SerbaController extends Controller
             $store = array();
             $store['id'] = $e->id;
             $store['title'] = $e->judul;
+            $store['mhs'] = $e->mhs;
             array_push($item, $store);
         }
         return $item;

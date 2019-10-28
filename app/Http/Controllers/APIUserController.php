@@ -20,6 +20,7 @@ class APIUserController extends Controller
         $user->password = Hash::make($request->password);
         $user->tipe = $request->tipe;
         $user->awal_hamil = $request->awal_hamil;
+        $user->tanggal_lahir = null;
 
         if($user->save()) return Tool::json(array('status' => '1', 'token' => Tool::encrypt($user->id), 'user' => $user));
         else return Tool::json(array('status' => '0'));
@@ -34,6 +35,15 @@ class APIUserController extends Controller
       }
 
       return Tool::json(array('token' => '0'));
+    }
+
+    public function checkLogin(Request $request){
+      $user = User::find(Tool::decrypt($request->token));
+      if(!empty($user)){
+        return Tool::json(array('status' => 1));
+      }
+
+      return Tool::json(array('status' => 0));
     }
 
     public function loginDokter(Request $request){

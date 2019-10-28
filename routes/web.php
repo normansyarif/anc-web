@@ -32,4 +32,8 @@ Route::post('/admin/post_faq', 'FAQController@post')->name('post_faq');
 Route::post('/admin/update_faq', 'FAQController@update')->name('update_faq');
 Route::post('/admin/delete_faq/{id}', 'FAQController@delete')->name('delete_faq');
 
-Route::get('/admin/users', 'HomeController@users')->name('users');
+Route::get('/admin/users', 'UserController@users')->name('users');
+Route::post('/admin/users/{id}/delete', 'UserController@delete')->name('user.delete');
+
+Route::get('/admin/settings', 'UserController@settings')->name('settings');
+Route::post('/admin/change-pass', 'UserController@changePassword')->name('changePassword');

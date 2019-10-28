@@ -34,7 +34,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-5">Her-ANC<br /><span class="text-smaller">Fakultas Kedokteran dan Ilmu Kesehatan<br />Universitas Jambi<span class="text-smaller"></h1>
+                    <h1 class="h4 text-gray-900 mb-5">Her-ANC<br /><span class="text-smaller">Login Administrator</span></h1>
                     </div>
                     <form method="POST" action="{{ route('login') }}" class="user">
                         @csrf

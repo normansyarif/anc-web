@@ -76,13 +76,13 @@
         @csrf
         <!-- Modal body -->
         <div class="modal-body">
-          <div>
+          <div class="mb-3">
             <label>Pertanyaan</label>
-            <input type="text" name="pertanyaan" class="form-control">
+            <input type="text" name="pertanyaan" class="form-control" required>
           </div>
           <div>
             <label>Jawaban</label>
-            <textarea class="form-control" name="jawaban"></textarea>
+            <textarea class="form-control ta-faq" name="jawaban" required></textarea>
           </div>
         </div>
 
@@ -137,13 +137,13 @@
         <!-- Modal body -->
         <div class="modal-body">
           <input id="edit-id" type="hidden" name="id">
-          <div>
+          <div class="mb-3">
             <label>Pertanyaan</label>
-            <input id="edit-pertanyaan" type="text" name="pertanyaan" class="form-control">
+            <input id="edit-pertanyaan" type="text" name="pertanyaan" class="form-control" required>
           </div>
           <div>
             <label>Jawaban</label>
-            <textarea id="edit-jawaban" class="form-control" name="jawaban"></textarea>
+            <textarea id="edit-jawaban" class="form-control ta-faq" name="jawaban" required></textarea>
           </div>
         </div>
 
@@ -156,5 +156,18 @@
     </div>
   </div>
 </div>
+
+@endsection
+
+
+@section('scripts')
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#dataTable').DataTable( {
+      "order": [[ 0, "asc" ]]
+    } );
+  } );
+</script>
 
 @endsection

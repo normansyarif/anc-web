@@ -13,16 +13,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['welcome']);
+        $this->middleware('auth');
     }
 
     public function welcome()
     {
-        return 'Welcome!';
-    }
-
-    public function users()
-    {
-        return view('users.users');
+        return redirect()->route('serba');
     }
 }
