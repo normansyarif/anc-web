@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 28, 2019 at 02:38 PM
+-- Generation Time: Oct 29, 2019 at 03:57 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -37,17 +37,6 @@ CREATE TABLE `chats` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_read` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `chats`
---
-
-INSERT INTO `chats` (`id`, `sender_id`, `recipient_id`, `chat`, `created_at`, `updated_at`, `is_read`) VALUES
-(1, 18, 1, 'Tes', '2019-10-28 05:16:59', '2019-10-28 05:16:59', 0),
-(2, 18, 1, 'Hhh', '2019-10-28 05:18:16', '2019-10-28 05:18:16', 0),
-(3, 18, 1, 'H dh', '2019-10-28 05:18:37', '2019-10-28 05:18:37', 0),
-(4, 18, 1, 'Bdbd', '2019-10-28 05:18:50', '2019-10-28 05:18:50', 0),
-(5, 19, 1, 'Oi dok', '2019-10-28 05:36:36', '2019-10-28 05:36:36', 0);
 
 -- --------------------------------------------------------
 
@@ -88,13 +77,6 @@ CREATE TABLE `forum` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `forum`
---
-
-INSERT INTO `forum` (`id`, `user_id`, `judul`, `konten`, `foto`, `created_at`, `updated_at`) VALUES
-(12, 18, 'Judul Forum', 'Mantap', NULL, '2019-10-28 05:27:58', '2019-10-28 05:27:58');
-
 -- --------------------------------------------------------
 
 --
@@ -109,19 +91,6 @@ CREATE TABLE `forum_responses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `forum_responses`
---
-
-INSERT INTO `forum_responses` (`id`, `forum_id`, `user_id`, `respon`, `created_at`, `updated_at`) VALUES
-(16, 12, 18, 'Komentar', '2019-10-28 05:28:55', '2019-10-28 05:28:55'),
-(17, 12, 18, 'Tes', '2019-10-28 05:30:24', '2019-10-28 05:30:24'),
-(18, 12, 18, 'Tesshshs', '2019-10-28 05:32:20', '2019-10-28 05:32:20'),
-(19, 12, 19, 'Ok', '2019-10-28 05:34:23', '2019-10-28 05:34:23'),
-(20, 12, 19, 'Nsjsjsjjdjdjdjdjdjdkdnndmdmdndndmmd', '2019-10-28 05:34:35', '2019-10-28 05:34:35'),
-(21, 12, 19, 'Jdjjdndndndndndmdmdmdmdmdmdmdmdmdndndndndndndnxnxnnxnxnxnxnxndnxnxnxnxnxnxnnxndndnxnx', '2019-10-28 05:34:50', '2019-10-28 05:34:50'),
-(22, 12, 20, 'Mantap gan', '2019-10-28 13:20:09', '2019-10-28 13:20:09');
 
 -- --------------------------------------------------------
 
@@ -216,11 +185,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `tipe`, `awal_hamil`, `photo`, `tanggal_lahir`) VALUES
-(1, 'Dr. dr. Herlambang, Sp.OG-KFM', 'herlambang', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '3', NULL, NULL, '2019-10-01'),
-(2, 'Administrator', 'admin', '$2y$10$b/NkcOe.uOWN.aEgc16l5.vrBALeTCRt20mnLlhYYIxGmQfQUldsW', '4', NULL, NULL, NULL),
-(18, 'Norman ed', 'norman', '$2y$10$YNAU.QG/roGKah7l9DjUl.bEsyAi8HTiH8DL8ShG.BMbb.i8arwOm', '1', '2019-10-14', NULL, '2019-10-31'),
-(19, 'yulia', 'yulia', '$2y$10$F920kEXwYoWKtFS9Isl6yOQxlHWLk762aaU5HzeQjHn0m38TUUMbW', '1', '2019-10-09', NULL, NULL),
-(20, 'ujang', 'ujang', '$2y$10$1KgsHZTW1TRGcpVPioCYE.qDviJ0Pys8MfXwPolLr8hL9PFzAUzNu', '2', '2019-10-28', NULL, NULL);
+(1, 'Dr. dr. Herlambang, Sp.OG-KFM', 'herlambang', '$2y$12$agOrn5pI7UhMGSKuO9/ZleBvxRHmcLarunF04rTK2u8jiFAGFTmQG', '3', NULL, NULL, '2019-10-01'),
+(2, 'Administrator', 'admin', '$2y$12$VXtwUbQkWRjvrRTPzRbdFuIw7LRbT/rXUvgJigdIE8f0s/gV51sfK', '4', NULL, NULL, NULL),
+(18, 'Norman', 'norman', '$2y$10$YNAU.QG/roGKah7l9DjUl.bEsyAi8HTiH8DL8ShG.BMbb.i8arwOm', '1', '2019-10-14', NULL, '2019-10-31'),
+(19, 'Yulia', 'yulia', '$2y$10$F920kEXwYoWKtFS9Isl6yOQxlHWLk762aaU5HzeQjHn0m38TUUMbW', '1', '2019-10-09', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -283,7 +251,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -295,13 +263,13 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `forum_responses`
 --
 ALTER TABLE `forum_responses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
